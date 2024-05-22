@@ -18,9 +18,61 @@ import universidadejemplo.Entidades.*;
 public class UniversidadEjemplo {
 
     public static void main(String[] args) {
-        Connection conexion = Conexion.getConexion();        
-            //Prueba Guardar alumnos en la BD 
+        Connection conexion = Conexion.getConexion(); 
             
+            //Prueba de guardar materias en la BD
+            System.out.println("*** Prueba de guardado de Materias ***");
+            try{
+                Materia materia = new Materia("Laboratorio de programacion I",2,true); //nombre, anio, estado
+                MateriaData materia1 = new MateriaData();
+                materia1.guardarMateria(materia);
+                
+                materia.setNombre("Programacion Web I");
+                materia.setAnio(2);
+                materia.setEstado(true);
+                MateriaData materia2 = new MateriaData();
+                materia2.guardarMateria(materia);
+                
+                materia.setNombre("Ingles I");
+                materia.setAnio(2);
+                materia.setEstado(true);
+                MateriaData materia3 = new MateriaData();
+                materia3.guardarMateria(materia);
+                
+                materia.setNombre("Laboratorio 2");
+                materia.setAnio(3);
+                materia.setEstado(true);
+                MateriaData materia4 = new MateriaData();
+                materia4.guardarMateria(materia);
+                
+            }catch(NumberFormatException | NullPointerException ex){
+                JOptionPane.showMessageDialog(null, "Complete todos los campos");
+            }
+            
+            //Prueba de eliminacion de materia por id
+            MateriaData materiaAEliminar = new MateriaData();
+            int id= 6;
+            System.out.println("");
+            System.out.println("*** Prueba de eliminacion de Materia ***");
+            materiaAEliminar.eliminarMateria(id);
+            
+            
+            
+            //Prueba de listado de materias
+            MateriaData materiaData = new MateriaData();
+            List<Materia> materias = new ArrayList<>();
+            System.out.println("");
+            System.out.println("*** Prueba de Listado de Materias ***");
+            materias = materiaData.listarMateria();
+            for (Materia materia1 : materias) {
+                System.out.println(""+materia1.toString());
+            }
+            
+        }
+            
+            
+            /*
+             //Prueba Guardar alumnos en la BD 
              try{
                 Alumno alumno = new Alumno(33291234,"Ramirez","Pedro",LocalDate.parse("1989-08-07"),true);
                 AlumnoData alumno1 = new AlumnoData();
@@ -220,7 +272,7 @@ public class UniversidadEjemplo {
     }//Fin Main
     
     public static PreparedStatement pStat(Connection conexion, String sql) throws SQLException{    
-    return conexion.prepareStatement(sql); 
+    return conexion.prepareStatement(sql); }
 */
-    } 
+     
 }
